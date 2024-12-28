@@ -22,6 +22,7 @@ parent = client.queue_path(PROJECT_ID, LOCATION, QUEUE_ID)
 @app.route('/', methods=['POST'])
 def handle_request():
     try:
+        print(request)
         api_event = request.path  # Get the path from the request
 
         if api_event == DATETIME:
