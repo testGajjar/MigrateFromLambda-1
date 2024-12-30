@@ -55,7 +55,7 @@ def create_task(message):
             'http_method': tasks_v2.HttpMethod.POST,
             'url': 'https://retrieve-datetime-uuid-537715546935.us-west1.run.app',  # Replace with your actual Cloud Run service URL
             'headers': {'Content-type': 'application/json'},
-            'body': message.encode()
+            'body': json.dumps(message).encode()
         }
     }
     response = client.create_task(request={'parent': parent, 'task': task})
