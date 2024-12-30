@@ -19,7 +19,7 @@ client = tasks_v2.CloudTasksClient()
 parent = client.queue_path(PROJECT_ID, LOCATION, QUEUE_ID)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def handle_request():
     try:
         print(request)
