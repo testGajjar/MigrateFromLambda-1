@@ -29,7 +29,17 @@ def get_datetime():
         message = datetime.strftime(datetime.now(), "%m-%d-%Y, %I:%M:%S %p (UTC)")
         print(message)
         create_task(message)  # Enqueue the message to Cloud Tasks
-        return json.dumps(message)
+
+        
+        # Set CORS headers
+        headers = {
+            'Access-Control-Allow-Origin': '*',  # Allow requests from any origin
+            'Access-Control-Allow-Methods': 'GET',  # Allow GET requests
+            'Access-Control-Allow-Headers': 'Content-Type',  # Allow Content-Type header
+            'Access-Control-Max-Age': '3600'  # Cache preflight response for 1 hour
+        }
+        
+        return (json.dumps(message), 200, headers)
     except Exception as e:
         print(e)
         return str(e), 500
@@ -42,7 +52,16 @@ def get_uuid():
         message = str(uuid.uuid4())
         print(message)
         create_task(message)  # Enqueue the message to Cloud Tasks
-        return json.dumps(message)
+        
+        # Set CORS headers
+        headers = {
+            'Access-Control-Allow-Origin': '*',  # Allow requests from any origin
+            'Access-Control-Allow-Methods': 'GET',  # Allow GET requests
+            'Access-Control-Allow-Headers': 'Content-Type',  # Allow Content-Type header
+            'Access-Control-Max-Age': '3600'  # Cache preflight response for 1 hour
+        }
+        
+        return (json.dumps(message), 200, headers)
     except Exception as e:
         print(e)
         return str(e), 500
